@@ -4,27 +4,19 @@
 
 <h1>Function Call</h1>
 
-@if (string.IsNullOrEmpty(message))
-{
-    <p>Loading...</p>
-}
-else
-{
-    <p>Function response: @message</p>
-}
-
 @code {
+    private int successfulCalls = 0;
+    private int failedCalls = 0;
     private string message;
+    private int callsToMake = 100;
+
 
     protected override async Task OnInitializedAsync()
     {
-        try
+        for (var i = 0; i <= 1000; i++)
         {
-            message = await Http.GetStringAsync("https://azfun-cumulonimbus-blazorfunction.azurewebsites.net/api/blazortrigger?name=blazorwebapp");
-        }
-        catch (Exception ex)
-        {
-            message = ex.Message;
+            var url = $"https://azfun-cumulonimbus-blazorfunction.azurewebsites.net/api/blazortrigger?name={i}";
+            var result = await Http.GetStringAsync(url);
         }
     }
 }
