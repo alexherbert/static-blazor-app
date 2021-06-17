@@ -20,7 +20,7 @@ else
     {
         try
         {
-            message = await Http.GetStringAsync("https://azfun-cumulonimbus-blazorfunction.azurewebsites.net");
+            message = await Http.GetStringAsync("https://azfun-cumulonimbus-blazorfunction.azurewebsites.net/api/blazortrigger?name=blazorwebapp");
         }
         catch (Exception ex)
         {
