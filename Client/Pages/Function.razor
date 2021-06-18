@@ -1,0 +1,22 @@
+@page "/function"
+@using BlazorApp.Shared
+@inject HttpClient Http
+
+<h1>Function Call</h1>
+
+@code {
+    private int successfulCalls = 0;
+    private int failedCalls = 0;
+    private string message;
+    private int callsToMake = 100;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        for (var i = 0; i <= 100; i++)
+        {
+            var url = $"https://azfun-cumulonimbus-blazorfunction.azurewebsites.net/api/blazortrigger?name={i}";
+            var result = await Http.GetStringAsync(url);
+        }
+    }
+}
